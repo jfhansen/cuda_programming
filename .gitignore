@@ -1,0 +1,14 @@
+# Ignore image files
+*.ppm
+*.pgm
+*.bmp
+*.jpg
+*.jpeg
+# Ignore temporary files
+*.swp
+# Ignore VSCode generated folders
+.*/
+# Ignore object files and executables
+*.out
+*.o
+*.exe
