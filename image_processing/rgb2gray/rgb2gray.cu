@@ -41,15 +41,6 @@ __global__ void cuda_rgba_to_grayscale(const uchar4 *const rgbaImage,
 void rgba_to_grayscale(const uchar4 *const d_rgbaImage,	unsigned char *const d_grayImage, 
 						size_t numRows, size_t numCols)
 {
-	//const unsigned RGBA_BYTES = sizeof(uchar4)*numRows*numCols;
-	//const unsigned GRAY_BYTES = sizeof(unsigned char)*numRows*numCols;
-	//uchar4 *d_rgbaImage;
-	//unsigned char *d_grayImage;
-	//cudaMalloc(&d_rgbaImage, RGBA_BYTES);
-	//cudaMalloc(&d_grayImage, GRAY_BYTES);
-
-	//cudaMemcpy(d_rgbaImage, h_rgbaImage, RGBA_BYTES, cudaMemcpyHostToDevice);
-	
 	dim3 threadsPerBlock(BLOCKDIM,BLOCKDIM,1);
 	dim3 blocksPerGrid(
 		(numCols + BLOCKDIM - 1)/BLOCKDIM,
@@ -57,8 +48,6 @@ void rgba_to_grayscale(const uchar4 *const d_rgbaImage,	unsigned char *const d_g
 		1);
 
 	cuda_rgba_to_grayscale<<<blocksPerGrid, threadsPerBlock>>>(d_rgbaImage, d_grayImage, numRows, numCols);
-
-	//cudaMemcpy(h_grayImage, d_grayImage, GRAY_BYTES, cudaMemcpyDeviceToHost);
 
 	cudaError_t err;
 	while ( (err = cudaGetLastError()) != cudaSuccess )

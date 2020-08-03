@@ -7,7 +7,7 @@
  *************************************************************/
 
 #include <iostream>
-#include "../im_processing.hpp"
+#include "im_processing.hpp"
 
 void rgba_to_grayscale(const uchar4 *const d_rgbaImage, unsigned char *const d_grayImage,
                         size_t numRows, size_t numCols);
